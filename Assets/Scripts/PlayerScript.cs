@@ -32,9 +32,9 @@ public class PlayerScript : MonoBehaviour
         rigidbody.velocity = new Vector2(targetMoveSpeed, rigidbody.velocity.y);
 
         // Jumps if not grounded
-        if(grounded && (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)))
+        if (grounded && (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)))
         {
-            rigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, (1f * jumpPower));
         }
     }
 }
