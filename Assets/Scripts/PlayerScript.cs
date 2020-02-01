@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
@@ -6,14 +7,17 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
+    public SpriteRenderer img;
     public LayerMask groundLayers;
     public Text loseText;
+    public Text scoreText;
     public float moveSpeed;
     public float jumpPower;
     public float jumpCooldownInSeconds;
     public float loudnessThreshold;
     public float maxVelocity = 10;
     private SpriteRenderer mouth;
+    public int maxXReached;
 
     private bool isMoving;
     float speed;
@@ -28,6 +32,8 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        img.color = new Color(0, 0, 0, 0);
+        maxXReached = 0;
         loseText.gameObject.SetActive(false);
         isMoving = true;
         mouth = gameObject.GetComponentsInChildren<SpriteRenderer>().Where(r => r.name == "Mouth").Single();
@@ -42,12 +48,17 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        speed = GetComponent<Rigidbody2D>().velocity.magnitude;
+        var rb = GetComponent<Rigidbody2D>();
+        maxXReached = Mathf.Max((int)rb.position.x, maxXReached);
+        scoreText.text = $"Score: {maxXReached}";
+
+        speed = rb.velocity.magnitude;
         if (hasTouchedGround && Mathf.Abs(speed) < 0.018)
         {
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             loseText.gameObject.SetActive(true);
             isMoving = false;
+            StartCoroutine(FadeImage());
         }
     }
 
@@ -57,7 +68,6 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.R))
             {
-                print("REEEEE");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
@@ -114,6 +124,16 @@ public class PlayerScript : MonoBehaviour
         if(collision.gameObject.tag == "Ground")
         {
             hasTouchedGround = true;
+        }
+    }
+
+    IEnumerator FadeImage()
+    {
+        for (float i = 0; i <= 1; i += Time.deltaTime)
+        {
+            // set color with i as alpha
+            img.color = new Color(0, 0, 0, i);
+            yield return null;
         }
     }
 }
