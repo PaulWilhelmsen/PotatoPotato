@@ -5,7 +5,6 @@ namespace Assets.Script
 {
     public class CameraScript : MonoBehaviour
     {
-        public GameObject TargetPlayer;
         float _nextTimeToSearch = 0;
         public float ZoomSpeed = 0.5f;
         public float X;
@@ -19,7 +18,7 @@ namespace Assets.Script
         public void CameraMovement()                    //The cameras target with delay and margin 
         {
             if (!IsFollowing) return;
-        
+
             X = DelayedFollowTarget.x;
             Y = DelayedFollowTarget.y;
 
@@ -38,13 +37,13 @@ namespace Assets.Script
 
         void Start()
         {
-            // Target = GameObject.FindGameObjectWithTag("Player");
+            //Target = GameObject.FindGameObjectWithTag("Player");
             Assert.IsNotNull(Target, $"Target is null in {nameof(CameraScript)} on {gameObject.name}");
         }
 
         void Update()
         {
-            if (Target != null) return;
+            if (Target == null) return;
         
             FindPlayer();
             if(Target != null)
@@ -67,7 +66,7 @@ namespace Assets.Script
         void LateUpdate()
         {
             if (Target == null) return;
-        
+
             CameraMovement();
 
         }

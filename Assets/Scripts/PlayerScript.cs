@@ -41,7 +41,7 @@ public class PlayerScript : MonoBehaviour
             audioSource.mute = false;
             voiceTimestamp = Time.time + 0.2f;
             loudness = GetVolume() * 1000f;
-            print(loudness);
+            //print(loudness);
         }
 
         if ((Time.time >= jumpTimestamp && 
