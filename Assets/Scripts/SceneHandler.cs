@@ -40,6 +40,8 @@ public class SceneHandler : MonoBehaviour
 
         if (UnityEngine.Input.GetKey(KeyCode.F))
             MoveLimbs(Enums.JointSpot.DownLeft);
+        
+        FindObjectOfType<FaceScript>().SwitchFace(Enums.FaceType.Happy);
     }
 
     public void MoveLimbs(Enums.JointSpot joint)

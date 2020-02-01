@@ -1,22 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class FaceScript : MonoBehaviour
 {
-    public float parentRotationZ;
+    public List<FaceSprite> Emotions;
+    public SpriteRenderer Eyes;
+    public SpriteRenderer Mouth;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SwitchFace(Enums.FaceType faceType)
     {
-
+        var x = Emotions.SingleOrDefault(o => o.FaceType == faceType);
+        if (x == null)
+            return;
+        
+        Eyes.sprite = x.Eye;
+        Mouth.sprite = x.Mouth;
     }
 
-    // Update is called once per frame
-    void Update()
+    [Serializable]
+    public class FaceSprite
     {
-        var parent = gameObject.transform.parent;
-        parentRotationZ = gameObject.transform.parent.gameObject.transform.rotation.z;
-        transform.SetPositionAndRotation(parent.position, new Quaternion(parent.rotation.x, parent.rotation.y, parentRotationZ, parent.rotation.w));
+        public Sprite Eye;
+        public Sprite Mouth;
+        public Enums.FaceType FaceType;
     }
 }

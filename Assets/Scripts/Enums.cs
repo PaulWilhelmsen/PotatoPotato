@@ -12,4 +12,15 @@ public class Enums : MonoBehaviour
         TopRight,
         DownRight
     }
+
+    public enum FaceType
+    {
+        Happy,
+        Woho,
+        Sad,
+        Neutral,
+        Scream
+    }
+    
+    
 }
