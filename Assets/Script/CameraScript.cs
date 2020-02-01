@@ -1,77 +1,76 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.Assertions;
 
-public class CameraScript : MonoBehaviour
+namespace Assets.Script
 {
-    public GameObject targetPlayer;
-    float nextTimeToSearch = 0;
-    public float zoomSpeed = 0.5f;
-    public float x;
-    public float y;
-    public float dampTime = 0.2f;
-    public Vector3 delayedFollowTarget;             //A delayed vector of the position of the target allowing the target to walk without the camera following
-    public bool isFollowing;
-    public GameObject target;
-    public Vector3 margin;                          //How far the avatar is able to walk.. 20 and higher will get laggy
-
-    public void cameraMovement()                    //The cameras target with delay and margin 
+    public class CameraScript : MonoBehaviour
     {
-        x = delayedFollowTarget.x;
-        y = delayedFollowTarget.y;
+        public GameObject TargetPlayer;
+        float _nextTimeToSearch = 0;
+        public float ZoomSpeed = 0.5f;
+        public float X;
+        public float Y;
+        public float dampTime = 0.2f;
+        public Vector3 DelayedFollowTarget;             //A delayed vector of the position of the target allowing the target to walk without the camera following
+        public bool IsFollowing;
+        public GameObject Target;
+        public Vector3 Margin;                          //How far the avatar is able to walk.. 20 and higher will get laggy
 
-
-        if (isFollowing)
+        public void CameraMovement()                    //The cameras target with delay and margin 
         {
-            if (target.transform.position.x <= margin.x)           //Mathf.Abs(x - target.transform.position.x
+            if (!IsFollowing) return;
+        
+            X = DelayedFollowTarget.x;
+            Y = DelayedFollowTarget.y;
+
+            if (Target.transform.position.x <= Margin.x)           //Mathf.Abs(x - target.transform.position.x
             {
-                x = Mathf.Lerp(x, target.transform.position.x, Time.deltaTime);
+                X = Mathf.Lerp(X, Target.transform.position.x, Time.deltaTime);
             }
-            if (Mathf.Abs(y - target.transform.position.y) > margin.y)
+            if (Mathf.Abs(Y - Target.transform.position.y) > Margin.y)
             {
-                y = Mathf.Lerp(y, target.transform.position.y, Time.deltaTime);
+                Y = Mathf.Lerp(Y, Target.transform.position.y, Time.deltaTime);
             }
-            delayedFollowTarget = new Vector3(target.transform.position.x, target.transform.position.y, transform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, delayedFollowTarget, dampTime);
+            DelayedFollowTarget = new Vector3(Target.transform.position.x, Target.transform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, DelayedFollowTarget, dampTime);
             //transform.(delayedFollowTarget);
         }
-    }
 
-    void Start()
-    {
-        target = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    void Update()
-    {
-        if (target == null)
+        void Start()
         {
+            // Target = GameObject.FindGameObjectWithTag("Player");
+            Assert.IsNotNull(Target, $"Target is null in {nameof(CameraScript)} on {gameObject.name}");
+        }
+
+        void Update()
+        {
+            if (Target != null) return;
+        
             FindPlayer();
-            if(target != null)
-            delayedFollowTarget = target.transform.position;
+            if(Target != null)
+                DelayedFollowTarget = Target.transform.position;
         }
-    }
-    void FindPlayer()
-    {
-        if (nextTimeToSearch <= Time.time)
+        void FindPlayer()
         {
-            //if(GameObject.FindObjectOfType<Player_controller>() != null)
-            //target = GameObject.FindObjectOfType<Player_controller>().gameObject;
-            //GameObject searchResultRed = GameObject.FindGameObjectWithTag("Player");
-            //if (searchResultRed != null)
-            //{
-            //    target = searchResultRed;
-            //}
-            nextTimeToSearch = Time.time + 0.5f;
+            if (_nextTimeToSearch <= Time.time)
+            {
+                //if(GameObject.FindObjectOfType<Player_controller>() != null)
+                //target = GameObject.FindObjectOfType<Player_controller>().gameObject;
+                //GameObject searchResultRed = GameObject.FindGameObjectWithTag("Player");
+                //if (searchResultRed != null)
+                //{
+                //    target = searchResultRed;
+                //}
+                _nextTimeToSearch = Time.time + 0.5f;
+            }
         }
-    }
-    void LateUpdate()
-    {
-        if (target != null)
+        void LateUpdate()
         {
-            //if (target.transform.position.x > -7 && target.transform.position.x < 7) //OLd code, useful if there were to be any 
-                cameraMovement();
-        }
+            if (Target == null) return;
+        
+            CameraMovement();
 
+        }
     }
 }
 
