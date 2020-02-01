@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         mouth = gameObject.GetComponentsInChildren<SpriteRenderer>().Where(r => r.name == "Mouth").Single();
+        Assert.IsNotNull(mouth);
         jumpTimestamp = Time.time;
         voiceTimestamp = Time.time;
 
@@ -40,7 +42,7 @@ public class PlayerScript : MonoBehaviour
         {
             voiceTimestamp = Time.time + 0.2f;
             loudness = GetVolume() * 1000f;
-            print(loudness);
+            // print(loudness);
         }
 
         if ((Time.time >= jumpTimestamp && 

@@ -6,22 +6,22 @@ using UnityEngine;
 public class JointData : MonoBehaviour
 {
     public Enums.JointSpot Spot;
-    private bool _isTaken;
+    public bool IsTaken { get; private set; }
     public float MaxLimit;
     public float MinLimit;
 
-    public JointLimits Limits()
+    public JointAngleLimits2D Limits()
     {
-        return new JointLimits {max = MaxLimit, min = MinLimit} ;
+        return new JointAngleLimits2D() {max = MaxLimit, min = MinLimit} ;
     }
 
     public void Awake()
     {
-        _isTaken = false;
+        IsTaken = false;
     }
 
     public void SetIsTaken(bool setTaken)
     {
-        _isTaken = setTaken;
+        IsTaken = setTaken;
     }
 }
