@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 6888905038214377070}
   - component: {fileID: 2049350847}
   - component: {fileID: 2049350846}
+  - component: {fileID: 293550641}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -437,22 +438,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afab15bafc962004f8eaabd337a9197d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img: {fileID: 0}
   groundLayers:
     serializedVersion: 2
     m_Bits: 256
-  Emotions: {fileID: 0}
-  loseText: {fileID: 0}
-  scoreText: {fileID: 0}
   moveSpeed: 250
   jumpPower: 14
   jumpCooldownInSeconds: 1
   loudnessThreshold: 1000
   maxVelocity: 10
-  maxXReached: 0
-  speed: 0
   updateStep: 0.1
   sampleDataLength: 1024
+--- !u!114 &293550641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6888905038214377064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a08ac1b1f772684aa6bb87d0d266867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
 --- !u!1 &6888905038215972291
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,6 +570,9 @@ MonoBehaviour:
   - Eye: {fileID: 21300000, guid: 94370bbdefe636c4e8d5440e1129f2c0, type: 3}
     Mouth: {fileID: 21300000, guid: 6ba452ddf2d64684a84512bc928f8d10, type: 3}
     FaceType: 4
+  - Eye: {fileID: 21300000, guid: 72058acd38492614bb37bff6d24f5f08, type: 3}
+    Mouth: {fileID: 21300000, guid: 7e9d2683e8ed9734e87a95fab8bee992, type: 3}
+    FaceType: 3
   Eyes: {fileID: 6888905039264228698}
   Mouth: {fileID: 1165612898}
 --- !u!1 &6888905039052883937
