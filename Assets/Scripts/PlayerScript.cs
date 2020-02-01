@@ -66,12 +66,9 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isMoving)
+        if (Input.GetKey(KeyCode.R))
         {
-            if (Input.GetKey(KeyCode.R))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(GetComponent<Rigidbody2D>().velocity, maxVelocity);
