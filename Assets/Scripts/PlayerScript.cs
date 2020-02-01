@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
 {
     public SpriteRenderer img;
     public LayerMask groundLayers;
+    public FaceScript Emotions;
     public Text loseText;
     public Text scoreText;
     public float moveSpeed;
@@ -20,7 +21,7 @@ public class PlayerScript : MonoBehaviour
     public int maxXReached;
 
     private bool isMoving;
-    float speed;
+    public float speed;
     private bool hasTouchedGround = false;
 
     AudioSource audioSource;
@@ -32,6 +33,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        Emotions = GetComponentInChildren<FaceScript>();
         img.color = new Color(0, 0, 0, 0);
         maxXReached = 0;
         loseText.gameObject.SetActive(false);
@@ -53,13 +55,13 @@ public class PlayerScript : MonoBehaviour
         scoreText.text = $"Score: {maxXReached}";
 
         speed = rb.velocity.magnitude;
-        if (hasTouchedGround && Mathf.Abs(speed) < 0.018)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            loseText.gameObject.SetActive(true);
-            isMoving = false;
-            StartCoroutine(FadeImage());
-        }
+
+        if (!hasTouchedGround || !(Mathf.Abs(speed) > 0.018)) return;
+        
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        loseText.gameObject.SetActive(true);
+        isMoving = false;
+        StartCoroutine(FadeImage());
     }
 
     void FixedUpdate()
@@ -123,6 +125,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ground")
         {
+            
             hasTouchedGround = true;
         }
     }
