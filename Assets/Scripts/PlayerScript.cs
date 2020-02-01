@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     public float jumpPower;
     public float jumpCooldownInSeconds;
     public float loudnessThreshold;
+    public float maxVelocity = 10;
     private SpriteRenderer mouth;
 
     AudioSource audioSource;
@@ -37,6 +38,7 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(GetComponent<Rigidbody2D>().velocity, maxVelocity);
         var loudness = 0f;
         if(Time.time >= jumpTimestamp && Time.time >= voiceTimestamp)
         {

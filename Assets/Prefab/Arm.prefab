@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2190065767443009017}
   - component: {fileID: 2190065767443009014}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2190065768309345351}
   - component: {fileID: 2190065768309345349}
   - component: {fileID: 2190065768309345346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm
   m_TagString: PlayerPart
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -110,7 +110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2190065768309345355}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7000191, w: -0.7141242}
+  m_LocalRotation: {x: -0, y: 0, z: -0.7000186, w: -0.71412456}
   m_LocalPosition: {x: 2.424, y: -2.961, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -220,7 +220,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.01}
-  m_ConnectedAnchor: {x: 2.433998, y: -2.9611995}
+  m_ConnectedAnchor: {x: 33.449547, y: 3.6688466}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
