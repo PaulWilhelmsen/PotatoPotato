@@ -30,6 +30,12 @@ public class PickUp : MonoBehaviour
 
     private void ConnectJoint(GameObject connectTo)
     {
+        var jointData = connectTo.GetComponent<JointData>();
+        if (jointData.IsTaken)
+            return;
+        
         _joint.connectedBody = connectTo.GetComponent<Rigidbody2D>();
+        jointData.SetIsTaken(true);
+        _joint.limits = jointData.Limits();
     }
 }
