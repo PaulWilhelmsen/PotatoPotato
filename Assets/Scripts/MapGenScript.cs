@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class MapHolderScript : MonoBehaviour
+public class MapGenScript : MonoBehaviour
 {
     [Tooltip("Rows and cols for the map grid")]
     public Vector2 myGrid;
@@ -20,7 +19,6 @@ public class MapHolderScript : MonoBehaviour
     void Start()
     {
         CreateMap();
-        InvokeRepeating("FunkyTiles", 0f, 0.05f);
     }
 
     void CreateMap()
@@ -43,15 +41,5 @@ public class MapHolderScript : MonoBehaviour
             }
         }
         print(mapList.Count + " tiles in the map");
-    }
-
-    // just for some extra fun ;)
-    void FunkyTiles()
-    {
-        int n = Random.Range(0, mapList.Count);
-        GameObject theTile = mapList[n];
-        Vector3 temp = theTile.transform.localPosition;
-        temp.y = Random.Range(-0.25f, 0.25f);
-        theTile.transform.localPosition = temp;
     }
 }

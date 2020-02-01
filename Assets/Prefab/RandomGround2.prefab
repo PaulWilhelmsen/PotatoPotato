@@ -97,7 +97,7 @@ BuoyancyEffector2D:
     m_Bits: 4294967295
   m_SurfaceLevel: 5.91
   m_Density: 2
-  m_LinearDrag: 1
+  m_LinearDrag: 3
   m_AngularDrag: 1
   m_FlowAngle: 0
   m_FlowMagnitude: 0
@@ -142,7 +142,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8609102667094347829
 Transform:

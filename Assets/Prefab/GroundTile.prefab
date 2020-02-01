@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 7517338642799654272}
   - component: {fileID: 7517338642799654275}
   - component: {fileID: 7517338642799654274}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundTile
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7517338642799654272
 Transform:
