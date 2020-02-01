@@ -21,16 +21,13 @@ public class PlayerAnimationScript : MonoBehaviour
             return;
         
         if (gameObject.transform.position.y > 3)
-        {
             _emotion.SwitchFace(Enums.FaceType.Happy);
-        }
+        
+        if(gameObject.transform.position.magnitude < 1)
+            _emotion.SwitchFace(Enums.FaceType.Sad);
 
         if (Input.GetKeyDown(KeyCode.Space))
-        {
             StartCoroutine("IsScreaming");
-        }
-        
-        
     }
 
     public IEnumerator IsScreaming()

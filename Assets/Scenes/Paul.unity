@@ -382,19 +382,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6888905037965530179}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &293550641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293550635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a08ac1b1f772684aa6bb87d0d266867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
 --- !u!1 &390249671 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2190065768309345355, guid: 0a9ff63d18e67d045abfcb2c80cd3cc1,
@@ -1219,24 +1206,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 512967789, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
-      propertyPath: Emotions.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 512967789, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
-      propertyPath: Emotions.Array.data[4].Eye
-      value: 
-      objectReference: {fileID: 21300000, guid: 72058acd38492614bb37bff6d24f5f08,
-        type: 3}
-    - target: {fileID: 512967789, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
-      propertyPath: Emotions.Array.data[4].Mouth
-      value: 
-      objectReference: {fileID: 21300000, guid: 7e9d2683e8ed9734e87a95fab8bee992,
-        type: 3}
-    - target: {fileID: 512967789, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
-      propertyPath: Emotions.Array.data[4].FaceType
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6888905038214377064, guid: 9f4060cbbbee7c441b07ba441469624b,
         type: 3}
       propertyPath: m_Name
