@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {
     public SpriteRenderer img;
+    public GameObject deathZone;
     public LayerMask groundLayers;
-    public FaceScript Emotions;
     public Text loseText;
     public Text scoreText;
     public float moveSpeed;
@@ -23,7 +23,6 @@ public class PlayerScript : MonoBehaviour
     private bool isMoving;
     public float speed;
     private bool isDead;
-    private bool hasTouchedGround = false;
 
     public AudioSource microphoneSource;
     public AudioSource jumpSoundSource;
@@ -41,7 +40,6 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        Emotions = GetComponentInChildren<FaceScript>();
         img.color = new Color(0, 0, 0, 0);
         maxXReached = 0;
         loseText.gameObject.SetActive(false);
@@ -58,23 +56,12 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
+        var deathZoneMin = Mathf.Max(maxXReached - 25, deathZone.transform.localPosition.x + 0.01f);
+        deathZone.transform.SetPositionAndRotation(new Vector3(deathZoneMin, deathZone.transform.localPosition.y, deathZone.transform.localPosition.z), new Quaternion());
         var rb = GetComponent<Rigidbody2D>();
         maxXReached = Mathf.Max(rb.position.x, maxXReached);
         scoreText.text = $"Score: {(int)maxXReached}";
-
         speed = rb.velocity.magnitude;
-
-        if (!hasTouchedGround || (Mathf.Abs(speed) > 0.018)) return;
-
-        if (!isDead)
-        {
-            deathSound.Play();
-        }
-        isDead = true;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        loseText.gameObject.SetActive(true);
-        isMoving = false;
-        StartCoroutine(FadeImage());
     }
 
     void FixedUpdate()
@@ -137,11 +124,24 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.name == "DeathZone")
         {
-            
-            hasTouchedGround = true;
+            Die();
         }
+    }
+
+    void Die()
+    {
+        var rb = GetComponent<Rigidbody2D>();
+        if (!isDead)
+        {
+            deathSound.Play();
+        }
+        isDead = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        loseText.gameObject.SetActive(true);
+        isMoving = false;
+        StartCoroutine(FadeImage());
     }
 
     IEnumerator FadeImage()
