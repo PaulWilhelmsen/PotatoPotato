@@ -488,12 +488,12 @@ PrefabInstance:
     - target: {fileID: 6888905038214377071, guid: 9f4060cbbbee7c441b07ba441469624b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.09950372
       objectReference: {fileID: 0}
     - target: {fileID: 6888905038214377071, guid: 9f4060cbbbee7c441b07ba441469624b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99503714
       objectReference: {fileID: 0}
     - target: {fileID: 6888905038214377071, guid: 9f4060cbbbee7c441b07ba441469624b,
         type: 3}
@@ -652,19 +652,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   moveSpeed: 250
-  jumpPower: 10
-  groundFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 256
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  debugMouthDirection: {x: 0, y: 0, z: 0}
+  jumpPower: 14
+  jumpCooldownInSeconds: 1
