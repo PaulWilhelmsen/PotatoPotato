@@ -670,7 +670,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2049350846, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
       propertyPath: loudnessThreshold
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6888905038214377064, guid: 9f4060cbbbee7c441b07ba441469624b,
         type: 3}

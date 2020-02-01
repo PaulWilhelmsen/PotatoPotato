@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
         var loudness = 0f;
         if(Time.time >= jumpTimestamp && Time.time >= voiceTimestamp)
         {
+            audioSource.mute = false;
             voiceTimestamp = Time.time + 0.2f;
             loudness = GetVolume() * 1000f;
             print(loudness);
@@ -52,7 +53,7 @@ public class PlayerScript : MonoBehaviour
                 jumpMultiplier = loudness / loudnessThreshold;
             }
             jumpTimestamp = Time.time + jumpCooldownInSeconds;
-            audioSource.clip = Microphone.Start(null, true, 10, 44100);
+            audioSource.mute = true;
             Jump(jumpMultiplier);
         }
     }
