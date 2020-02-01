@@ -17,18 +17,26 @@ public class PlayerScript : MonoBehaviour
     public float loudnessThreshold;
     public float maxVelocity = 10;
     private SpriteRenderer mouth;
-    public int maxXReached;
+    public float maxXReached;
 
     private bool isMoving;
+    private bool isDead;
     float speed;
     private bool hasTouchedGround = false;
 
-    AudioSource audioSource;
+    public AudioSource microphoneSource;
+    public AudioSource jumpSoundSource;
+    public AudioSource deathSound;
     public float updateStep = 0.1f;
     public int sampleDataLength = 1024;
 
     float jumpTimestamp;
     float voiceTimestamp;
+
+    public float MaxReached()
+    {
+        return maxXReached;
+    }
 
     void Start()
     {
@@ -36,25 +44,30 @@ public class PlayerScript : MonoBehaviour
         maxXReached = 0;
         loseText.gameObject.SetActive(false);
         isMoving = true;
+        isDead = false;
         mouth = gameObject.GetComponentsInChildren<SpriteRenderer>().Where(r => r.name == "Mouth").Single();
         Assert.IsNotNull(mouth);
         jumpTimestamp = Time.time;
         voiceTimestamp = Time.time;
 
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = Microphone.Start(null, true, 10, 44100);
-        audioSource.Play();
+        microphoneSource.clip = Microphone.Start(null, true, 10, 44100);
+        microphoneSource.Play();
     }
 
     void Update()
     {
         var rb = GetComponent<Rigidbody2D>();
-        maxXReached = Mathf.Max((int)rb.position.x, maxXReached);
-        scoreText.text = $"Score: {maxXReached}";
+        maxXReached = Mathf.Max(rb.position.x, maxXReached);
+        scoreText.text = $"Score: {(int)maxXReached}";
 
         speed = rb.velocity.magnitude;
-        if (hasTouchedGround && Mathf.Abs(speed) < 0.018)
+        if (hasTouchedGround && Mathf.Abs(speed) < 0.012)
         {
+            if (!isDead)
+            {
+                deathSound.Play();
+            }
+            isDead = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             loseText.gameObject.SetActive(true);
             isMoving = false;
@@ -76,7 +89,7 @@ public class PlayerScript : MonoBehaviour
         var loudness = 0f;
         if(Time.time >= jumpTimestamp && Time.time >= voiceTimestamp)
         {
-            audioSource.mute = false;
+            microphoneSource.mute = false;
             voiceTimestamp = Time.time + 0.2f;
             loudness = GetVolume() * 1000f;
         }
@@ -90,13 +103,14 @@ public class PlayerScript : MonoBehaviour
                 jumpMultiplier = loudness / loudnessThreshold;
             }
             jumpTimestamp = Time.time + jumpCooldownInSeconds;
-            audioSource.mute = true;
+            microphoneSource.mute = true;
             Jump(jumpMultiplier);
         }
     }
 
     void Jump(float jumpMultiplier)
     {
+        jumpSoundSource.Play();
         var mouthDirection = mouth.transform.position - gameObject.transform.position;
         var rigidbody = gameObject.GetComponent<Rigidbody2D>();
         var force = jumpPower * jumpMultiplier;
@@ -105,8 +119,8 @@ public class PlayerScript : MonoBehaviour
 
     float GetVolume()
     {
-        float[] samples = new float[audioSource.clip.samples * audioSource.clip.channels];
-        audioSource.clip.GetData(samples, 0);
+        float[] samples = new float[microphoneSource.clip.samples * microphoneSource.clip.channels];
+        microphoneSource.clip.GetData(samples, 0);
 
         var clipLoudness = 0f;
         for (int i = 0; i < samples.Length; ++i)
@@ -115,7 +129,7 @@ public class PlayerScript : MonoBehaviour
             clipLoudness += Mathf.Abs(samples[i]);
         }
 
-        return clipLoudness /= audioSource.clip.samples * audioSource.clip.channels;
+        return clipLoudness /= microphoneSource.clip.samples * microphoneSource.clip.channels;
     }
 
 
