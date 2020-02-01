@@ -23,8 +23,11 @@ public class PlayerAnimationScript : MonoBehaviour
         if (gameObject.transform.position.y > 3)
             _emotion.SwitchFace(Enums.FaceType.Happy);
         
-        if(gameObject.transform.position.magnitude < 1)
+        print(rb.velocity.magnitude);
+        if(rb.velocity.magnitude < 3)
             _emotion.SwitchFace(Enums.FaceType.Sad);
+        else if(rb.velocity.magnitude < 5)
+            _emotion.SwitchFace(Enums.FaceType.Happy);
 
         if (Input.GetKeyDown(KeyCode.Space))
             StartCoroutine("IsScreaming");
