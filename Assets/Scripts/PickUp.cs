@@ -37,7 +37,10 @@ public class PickUp : MonoBehaviour
         print($"{gameObject.name} has bool on collition with {connectTo.name} | Joint is {jointData.IsTaken}");
 
         _joint.connectedBody = connectTo.GetComponent<Rigidbody2D>();
-        jointData.SetIsTaken(true);
         _joint.limits = jointData.Limits();
+        
+        jointData.SetIsTaken(true);
+        jointData.SetAttachment(gameObject);
+        gameObject.transform.parent = connectTo.transform;
     }
 }
