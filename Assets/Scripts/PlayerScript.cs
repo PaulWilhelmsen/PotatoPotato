@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        var deathZoneMin = Mathf.Max(maxXReached - 25, deathZone.transform.localPosition.x + 0.01f);
+        var deathZoneMin = Mathf.Max(maxXReached - 35, deathZone.transform.localPosition.x + 0.01f);
         deathZone.transform.SetPositionAndRotation(new Vector3(deathZoneMin, deathZone.transform.localPosition.y, deathZone.transform.localPosition.z), new Quaternion());
         var rb = GetComponent<Rigidbody2D>();
         maxXReached = Mathf.Max(rb.position.x, maxXReached);

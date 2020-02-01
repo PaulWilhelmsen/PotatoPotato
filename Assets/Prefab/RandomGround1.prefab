@@ -153,15 +153,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomPickupSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 4246896530629327506, guid: e5ec7c92a3408164a97e10d5aa1f0714,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 4246896530629327507, guid: e5ec7c92a3408164a97e10d5aa1f0714,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.926
+      value: -0.66
       objectReference: {fileID: 0}
     - target: {fileID: 4246896530629327507, guid: e5ec7c92a3408164a97e10d5aa1f0714,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.324
+      value: 4.81
       objectReference: {fileID: 0}
     - target: {fileID: 4246896530629327507, guid: e5ec7c92a3408164a97e10d5aa1f0714,
         type: 3}
