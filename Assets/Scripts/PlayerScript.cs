@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -6,9 +7,13 @@ public class PlayerScript : MonoBehaviour
     public LayerMask groundLayers;
     public float moveSpeed;
     public float jumpPower;
+    public ContactFilter2D groundFilter;
+    
     float targetMoveSpeed;
-
     bool grounded;
+
+    public Vector3 debugMouthDirection;
+
 
     void Start()
     {
@@ -16,16 +21,14 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        // Checks if gameObjects overlaps ground layer
-        grounded = Physics2D.OverlapArea(
-            new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
-            new Vector2(transform.position.x + 0.5f, transform.position.y - 0.51f),
-            groundLayers);
+        grounded = gameObject.GetComponent<Collider2D>().IsTouching(groundFilter);
     }
 
     void FixedUpdate()
     {
         var rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        var mouth = gameObject.GetComponentsInChildren<SpriteRenderer>().Where(r => r.name == "Mouth").Single();
+        var mouthDirection = mouth.transform.position - transform.position;
 
         // Gets movement speed and applies it
         targetMoveSpeed = Mathf.Lerp(rigidbody.velocity.x, Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, Time.deltaTime * 10);
