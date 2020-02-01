@@ -19,6 +19,9 @@ public class PickUp : MonoBehaviour
         Debug.Log($"Hit with {other.gameObject.name} where tag is {other.gameObject.tag}");
         if (other.gameObject.tag != "JointSpot") return;
 
+        if(other.GetComponent<JointData>().IsTaken)
+            return;
+        
         SetNewPosition(other.transform.position);
         ConnectJoint(other.gameObject);
     }
@@ -31,9 +34,8 @@ public class PickUp : MonoBehaviour
     private void ConnectJoint(GameObject connectTo)
     {
         var jointData = connectTo.GetComponent<JointData>();
-        if (jointData.IsTaken)
-            return;
-        
+        print($"{gameObject.name} has bool on collition with {connectTo.name} | Joint is {jointData.IsTaken}");
+
         _joint.connectedBody = connectTo.GetComponent<Rigidbody2D>();
         jointData.SetIsTaken(true);
         _joint.limits = jointData.Limits();
