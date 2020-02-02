@@ -57,8 +57,6 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        var deathZoneMin = Mathf.Max(maxXReached - 25, deathZone.transform.localPosition.x + 0.02f);
-        deathZone.transform.SetPositionAndRotation(new Vector3(deathZoneMin, deathZone.transform.localPosition.y, deathZone.transform.localPosition.z), new Quaternion());
         var rb = GetComponent<Rigidbody2D>();
         maxXReached = Mathf.Max(rb.position.x, maxXReached);
         if(!isDead)
@@ -69,6 +67,9 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        var deathZoneMin = Mathf.Max(maxXReached - 25, deathZone.transform.localPosition.x + 0.06f);
+        deathZone.transform.SetPositionAndRotation(new Vector3(deathZoneMin, deathZone.transform.localPosition.y, deathZone.transform.localPosition.z), new Quaternion());
+
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
