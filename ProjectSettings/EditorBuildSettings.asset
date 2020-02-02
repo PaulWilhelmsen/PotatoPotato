@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Sondre.unity
+    guid: 50c75a0e693f62242b3aeb9fb7ffc6d1
   m_configObjects: {}

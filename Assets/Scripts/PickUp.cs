@@ -6,6 +6,7 @@ public class PickUp : MonoBehaviour
 {
     private Rigidbody2D _rb2d;
     private HingeJoint2D _joint;
+    public GameObject subJoint;
 
     public int Score;
 
@@ -73,5 +74,6 @@ public class PickUp : MonoBehaviour
         gameObject.transform.parent = connectTo.transform;
 
         connectTo.GetComponent<CircleCollider2D>().enabled = false;
+        subJoint.GetComponent<CircleCollider2D>().enabled = true;
     }
 }
