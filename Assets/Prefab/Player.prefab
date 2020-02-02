@@ -438,14 +438,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afab15bafc962004f8eaabd337a9197d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  img: {fileID: 0}
+  deathZone: {fileID: 0}
   groundLayers:
     serializedVersion: 2
     m_Bits: 256
+  loseText: {fileID: 0}
+  scoreText: {fileID: 0}
   moveSpeed: 250
   jumpPower: 14
   jumpCooldownInSeconds: 1
   loudnessThreshold: 1000
   maxVelocity: 10
+  maxXReached: 0
+  speed: 0
+  microphoneSource: {fileID: 0}
+  jumpSoundSource: {fileID: 0}
+  deathSound: {fileID: 0}
   updateStep: 0.1
   sampleDataLength: 1024
 --- !u!114 &293550641
