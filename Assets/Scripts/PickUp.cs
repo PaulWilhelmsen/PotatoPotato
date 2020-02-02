@@ -7,6 +7,8 @@ public class PickUp : MonoBehaviour
     private Rigidbody2D _rb2d;
     private HingeJoint2D _joint;
 
+    public int Score;
+
     public bool IsAttached { get; private set; }
     private object lockObject;
 
