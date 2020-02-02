@@ -11,6 +11,7 @@ public class JointData : MonoBehaviour
     public float MaxLimit;
     public float MinLimit;
     public float ZRotation;
+    private object lockObject;
 
     public JointAngleLimits2D Limits()
     {
@@ -19,12 +20,20 @@ public class JointData : MonoBehaviour
 
     public void Awake()
     {
+        lockObject = new object();
         IsTaken = false;
     }
 
     public void SetIsTaken(bool setTaken)
     {
-        IsTaken = setTaken;
+        lock (lockObject)
+        {
+            var x = gameObject.name;
+            if (!IsTaken)
+            {
+                IsTaken = setTaken;
+            }
+        }
     }
 
     public void SetAttachment(GameObject attach)

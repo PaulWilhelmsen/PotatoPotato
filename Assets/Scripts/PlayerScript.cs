@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour
     private bool isMoving;
     public float speed;
     private bool isDead;
+    private int endScore;
 
     public AudioSource microphoneSource;
     public AudioSource jumpSoundSource;
@@ -56,11 +57,13 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        var deathZoneMin = Mathf.Max(maxXReached - 35, deathZone.transform.localPosition.x + 0.01f);
+        var deathZoneMin = Mathf.Max(maxXReached - 25, deathZone.transform.localPosition.x + 0.02f);
         deathZone.transform.SetPositionAndRotation(new Vector3(deathZoneMin, deathZone.transform.localPosition.y, deathZone.transform.localPosition.z), new Quaternion());
         var rb = GetComponent<Rigidbody2D>();
         maxXReached = Mathf.Max(rb.position.x, maxXReached);
-        scoreText.text = $"Score: {(int)maxXReached}";
+        if(!isDead)
+            scoreText.text = $"Score: {(int)maxXReached}";
+
         speed = rb.velocity.magnitude;
     }
 
@@ -139,6 +142,9 @@ public class PlayerScript : MonoBehaviour
         loseText.gameObject.SetActive(true);
         isMoving = false;
         StartCoroutine(FadeImage());
+        var joints = GetComponentsInChildren<PickUp>().Where(p => p.IsAttached);
+        var totalScoreBonus = joints.Select(j => j.Score).Sum();
+        scoreText.text = $"Score: {(int)maxXReached + totalScoreBonus} Total bonus: ({totalScoreBonus})";
     }
 
     IEnumerator FadeImage()

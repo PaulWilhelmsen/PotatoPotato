@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &52870293
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -604,7 +604,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f8a46fed08a08e048b7274f5eeb56f5a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.201
+  m_Volume: 0.128
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -959,7 +959,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a619b0997d2b6184091a102f20400a66, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.384
+  m_Volume: 0.171
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1220,6 +1220,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1511561595, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
+      propertyPath: m_Radius
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877110104, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
+      propertyPath: m_Radius
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911450879, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
+      propertyPath: m_Radius
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013555962, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
+      propertyPath: m_Radius
+      value: 0.46
+      objectReference: {fileID: 0}
     - target: {fileID: 2049350846, guid: 9f4060cbbbee7c441b07ba441469624b, type: 3}
       propertyPath: loudnessThreshold
       value: 1000
@@ -1364,7 +1380,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c359562571dba3c4cbda1344a58c0d5b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.262
+  m_Volume: 0.109
   m_Pitch: 1
   Loop: 0
   Mute: 0

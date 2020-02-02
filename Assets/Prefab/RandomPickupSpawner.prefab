@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: RandomPickupSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabTiles:
   - {fileID: 2190065768309345355, guid: 0a9ff63d18e67d045abfcb2c80cd3cc1, type: 3}
+  - {fileID: 1697282439246512420, guid: 19236b87620e70e45900132487beae6b, type: 3}

@@ -9,7 +9,7 @@ public class RandomPickupSpawnScript : MonoBehaviour
     {
         Debug.Log("spawned");
         int n = Random.Range(0, prefabTiles.Length);
-        float randomSize = Random.Range(1f, 2.5f);
+        float randomSize = Random.Range(1.2f, 2f);
         var thePrefab = prefabTiles[n];
 
         // spawns the tile
