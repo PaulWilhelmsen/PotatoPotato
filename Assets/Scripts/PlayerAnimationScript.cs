@@ -23,7 +23,7 @@ public class PlayerAnimationScript : MonoBehaviour
         if (gameObject.transform.position.y > 3)
             _emotion.SwitchFace(Enums.FaceType.Happy);
         
-        print(rb.velocity.magnitude);
+        //print(rb.velocity.magnitude);
         if(rb.velocity.magnitude < 3)
             _emotion.SwitchFace(Enums.FaceType.Sad);
         else if(rb.velocity.magnitude < 5)
